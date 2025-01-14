@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <% if(locals.currentUser) {%>
+        <h1>Welcome <%= currentUser.username %></h1>
+        <a href="/logout">Log Out</a>
+
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="avatar"/>
+            <button type="submit">Upload File</button>
+        </form>
+    <% } else { %>
+        <a href="/register"><h2>Signup</h2></a>
+        <h1>Login</h1>
+        <form action="/log-in" method="POST">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username">
+            <label for="password">Password:</label><input type="password" name="password" id="password">
+            <button type="submit">Login</button>
+        </form>
+    <% if(locals.message) {%>
+        <%= message %>
+    <%}%>
+    <% } %>
+    
+</body>
+</html>
